@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+
 import ContactItem from "./ContactItem";
-import { IReqData } from "./Container";
 import EmptyTabContact from "./EmptyTabContact";
 import TabBadge from "./TabBadge";
+
+import { IReqData } from "../types/ContainerTypes";
 
 
 interface Props {

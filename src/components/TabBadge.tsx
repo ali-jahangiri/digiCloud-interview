@@ -1,4 +1,4 @@
-import { IReqData } from "./Container";
+import { IReqData } from "../types/ContainerTypes";
 
 interface Props extends IReqData {
     onSelect : (charName : string) => void;

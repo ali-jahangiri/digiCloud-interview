@@ -1,4 +1,4 @@
-import { IResponseSchema } from "./api";
+import { IResponseSchema } from "../types/apiResponseTypes";
 
 const STATIC_ALPHABET_CHARACTER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(el => el.toLowerCase());
 
@@ -15,9 +15,7 @@ function separateBaseOnChar(list : IResponseSchema[] , baseOn : "last" | "first"
                 .map(el => ({ ...el , id : idGenerator() })) // !NOTE : overwrite default id property which receive from api response with new id to use in UI component as unique identifier
     }));
 
-    console.log(charSeparatedWithOrder);
     
-
     return charSeparatedWithOrder;
 }
 

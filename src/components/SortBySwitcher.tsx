@@ -1,9 +1,9 @@
 import React from "react";
-
+import { TSortBase } from "../types/ContainerTypes";
 
 interface Props {
-    sortBaseOn : "last" | "first";
-    setSortBaseOn : React.Dispatch<React.SetStateAction<"last" | "first">>
+    sortBaseOn : TSortBase;
+    setSortBaseOn : React.Dispatch<React.SetStateAction<TSortBase>>
 }
 
 const SortBySwitcher : React.FC<Props> = ({ sortBaseOn , setSortBaseOn }) => {

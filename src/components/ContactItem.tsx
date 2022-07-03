@@ -1,6 +1,6 @@
 import React from "react";
-import { IResponseSchema } from "../utils/api";
 import ContactCard from "./ContactCard";
+import { IResponseSchema } from "../types/apiResponseTypes";
 
 interface Props extends IResponseSchema {
     onContactSelect : (cardName : number | null) => void;

@@ -1,5 +1,5 @@
 import React from "react";
-import { IResponseSchema } from "../utils/api";
+import { IResponseSchema } from "../types/apiResponseTypes";
 
 interface Props extends Omit<IResponseSchema ,"id">  {
     onClose : () => void

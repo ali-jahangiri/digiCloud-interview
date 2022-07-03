@@ -1,24 +1,17 @@
 import { useEffect, useState } from "react";
-import api, { IResponseSchema } from "../utils/api";
-import separateBaseOnChar from "../utils/separateBaseOnChar";
+
 import LoadingSpinner from "./Loading";
 import SortBySwitcher from "./SortBySwitcher";
 import Tab from "./Tab";
 
+import api from "../utils/api";
+import separateBaseOnChar from "../utils/separateBaseOnChar";
+
+import { IResponseSchema } from "../types/apiResponseTypes";
+import { IReqState, TReqKeys, TSortBase } from "../types/ContainerTypes";
 
 
-type TReqKeys = "loading" | "data" | "error";
 
-export interface IReqData {
-    name : string;
-    items : IResponseSchema[]
-}
-
-interface IReqState {
-    loading : boolean;
-    data : IResponseSchema[];
-    error : null | string;
-}
 
 const Container : React.FC = () => {
     const [request, setRequest] = useState<IReqState>({
@@ -27,9 +20,10 @@ const Container : React.FC = () => {
         error : null
     });
 
-    const [sortBaseOn, setSortBaseOn] = useState<"first" | "last">("last");
+    const [sortBaseOn, setSortBaseOn] = useState<TSortBase>("last");
 
 
+    // *optional function overload
     function changeReqHandler(key : "loading" , value : boolean) : void;
     function changeReqHandler(key : "data" , value : IResponseSchema[]) : void;
     function changeReqHandler(key : "error" , value : string) : void;
