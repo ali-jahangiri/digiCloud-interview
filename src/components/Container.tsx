@@ -4,6 +4,7 @@ import separateBaseOnChar from "../utils/separateBaseOnChar";
 import Tab from "./Tab";
 
 
+
 type TReqKeys = "loading" | "data" | "error";
 
 export interface IReqData {
@@ -47,7 +48,7 @@ const Container : React.FC = () => {
 
     return (
         <div className="container">
-            <p>Contact List</p>
+            <p className="container__title">Contact List</p>
             <Tab
                 isLoading={request.loading} 
                 items={request.data}

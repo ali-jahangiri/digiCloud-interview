@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import ContactItem from "./ContactItem";
 import { IReqData } from "./Container";
-import TabItem from "./TabItem";
+import EmptyTabContact from "./EmptyTabContact";
+import TabBadge from "./TabBadge";
 
 
 interface Props {
@@ -9,12 +11,30 @@ interface Props {
 }
 
 const Tab : React.FC<Props> = ({ items , isLoading }) => {
+    const [activeTabName, setActiveTabName] = useState<string>("A");
 
+    const activeTabItems = items.find(tab => tab.name === activeTabName)
+
+    if(isLoading) return <div>loading</div>
     return (
-        <div>
-            {
-                isLoading ? "loading" : items.map((tab , i) => <TabItem key={i} {...tab} />)
-            }
+        <div className="tab">
+            <div className="tab__badges">
+                {
+                    items.map((tab , i) => <TabBadge
+                                                    isActive={activeTabName === tab.name}
+                                                    onSelect={selectedChar => setActiveTabName(selectedChar)} 
+                                                    key={i} 
+                                                    {...tab}
+                                                />)
+                }
+            </div>
+            <div className="tab__itemContainer">
+                {
+                    Boolean(activeTabItems?.items.length) 
+                    ? activeTabItems?.items.map((item , i) => <ContactItem key={i} {...item} />) 
+                    : <EmptyTabContact />
+                }
+            </div>
         </div>
     )
 }
