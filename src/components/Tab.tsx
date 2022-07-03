@@ -7,11 +7,10 @@ import TabBadge from "./TabBadge";
 
 interface Props {
     items : IReqData[];
-    isLoading : boolean;
 }
 
-const Tab : React.FC<Props> = ({ items , isLoading }) => {
-    const [activeTabName, setActiveTabName] = useState("A");
+const Tab : React.FC<Props> = ({ items }) => {
+    const [activeTabName, setActiveTabName] = useState("a"); // default opened tab identifier
     const [activeContactCard, setActiveContactCard] = useState<null | number>(null);
 
 
@@ -23,7 +22,6 @@ const Tab : React.FC<Props> = ({ items , isLoading }) => {
     
     const activeTabItems = items.find(tab => tab.name === activeTabName);
     
-    if(isLoading) return <div>loading</div>
     return (
         <div className="tab">
             <div className="tab__badges">

@@ -1,0 +1,17 @@
+@keyframes spinnerRotateAnime {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loadingSpinner {
+    svg {
+        width: 2rem;
+        height: 2rem;
+        animation: spinnerRotateAnime 1s forwards infinite;
+        fill: $textColor;
+    }
+}

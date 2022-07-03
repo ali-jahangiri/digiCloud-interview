@@ -1,3 +1,12 @@
+@keyframes containerTitleAnimate {
+    from {
+        margin-bottom: -1.8rem;
+    }
+    to {
+        margin-bottom: 1.5rem;
+    }
+}
+
 .container {
     width: 85%;
     height: 100vh;
@@ -10,6 +19,10 @@
 
     &__title {
         text-align: center;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: $textColor;
+        animation: containerTitleAnimate .4s forwards alternate;
     }
 }

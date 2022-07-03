@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api, { IResponseSchema } from "../utils/api";
 import separateBaseOnChar from "../utils/separateBaseOnChar";
+import LoadingSpinner from "./Loading";
 import Tab from "./Tab";
 
 
@@ -48,11 +49,12 @@ const Container : React.FC = () => {
 
     return (
         <div className="container">
-            <p className="container__title">Contact List</p>
-            <Tab
-                isLoading={request.loading} 
-                items={request.data}
-            />
+            {
+                request.loading ? <LoadingSpinner /> : <>
+                    <p className="container__title">Contact List</p>
+                    <Tab items={request.data} />
+                </>
+            }
         </div>
     )
 }
