@@ -15,14 +15,20 @@
     justify-content: center;
     flex-direction: column;
     margin: 0 auto;
+    position: relative;
 
+
+    &__header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        animation: containerTitleAnimate .4s forwards alternate;
+    }
 
     &__title {
-        text-align: center;
-        margin-bottom: 1.5rem;
         font-size: 1.5rem;
         font-weight: bold;
         color: $textColor;
-        animation: containerTitleAnimate .4s forwards alternate;
+
     }
 }

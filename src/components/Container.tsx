@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api, { IResponseSchema } from "../utils/api";
 import separateBaseOnChar from "../utils/separateBaseOnChar";
 import LoadingSpinner from "./Loading";
+import SortBySwitcher from "./SortBySwitcher";
 import Tab from "./Tab";
 
 
@@ -15,7 +16,7 @@ export interface IReqData {
 
 interface IReqState {
     loading : boolean;
-    data : IReqData[];
+    data : IResponseSchema[];
     error : null | string;
 }
 
@@ -26,9 +27,11 @@ const Container : React.FC = () => {
         error : null
     });
 
+    const [sortBaseOn, setSortBaseOn] = useState<"first" | "last">("last");
+
 
     function changeReqHandler(key : "loading" , value : boolean) : void;
-    function changeReqHandler(key : "data" , value : IReqData[]) : void;
+    function changeReqHandler(key : "data" , value : IResponseSchema[]) : void;
     function changeReqHandler(key : "error" , value : string) : void;
     function changeReqHandler<T>(key : TReqKeys , value : T) {
         setRequest(prev => ({
@@ -41,18 +44,21 @@ const Container : React.FC = () => {
     useEffect(() => {
         changeReqHandler("loading" , true);
         api()
-            .then(peopleList => changeReqHandler("data", separateBaseOnChar(peopleList)))
+            .then(peopleList => changeReqHandler("data", peopleList))
             .catch(err => changeReqHandler("error" , err))
             .finally(() => changeReqHandler("loading" , false))
     } , []);
 
-
+    
     return (
         <div className="container">
             {
                 request.loading ? <LoadingSpinner /> : <>
-                    <p className="container__title">Contact List</p>
-                    <Tab items={request.data} />
+                    <div className="container__header">
+                        <p className="container__title">Contact List</p>
+                        <SortBySwitcher sortBaseOn={sortBaseOn} setSortBaseOn={setSortBaseOn} />
+                    </div>
+                    <Tab items={separateBaseOnChar(request.data , sortBaseOn)} />
                 </>
             }
         </div>

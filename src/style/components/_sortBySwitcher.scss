@@ -1,0 +1,14 @@
+.sortBySwitcher {
+    display: flex;
+    align-items: center;
+    
+    button {
+        background: none;
+        border: none;
+        transition: .3s;
+        cursor: pointer;
+        font-family: "Lato";
+        font-weight: bold;
+
+    }
+}
