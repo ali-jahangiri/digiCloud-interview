@@ -11,10 +11,18 @@ interface Props {
 }
 
 const Tab : React.FC<Props> = ({ items , isLoading }) => {
-    const [activeTabName, setActiveTabName] = useState<string>("A");
+    const [activeTabName, setActiveTabName] = useState("A");
+    const [activeContactCard, setActiveContactCard] = useState<null | number>(null);
 
-    const activeTabItems = items.find(tab => tab.name === activeTabName)
 
+    function onActiveTabChange(selectedChar : string) {
+        setActiveTabName(selectedChar);
+        // reset selected contact card
+        setActiveContactCard(null);
+    }
+    
+    const activeTabItems = items.find(tab => tab.name === activeTabName);
+    
     if(isLoading) return <div>loading</div>
     return (
         <div className="tab">
@@ -22,7 +30,7 @@ const Tab : React.FC<Props> = ({ items , isLoading }) => {
                 {
                     items.map((tab , i) => <TabBadge
                                                     isActive={activeTabName === tab.name}
-                                                    onSelect={selectedChar => setActiveTabName(selectedChar)} 
+                                                    onSelect={onActiveTabChange} 
                                                     key={i} 
                                                     {...tab}
                                                 />)
@@ -31,7 +39,12 @@ const Tab : React.FC<Props> = ({ items , isLoading }) => {
             <div className="tab__itemContainer">
                 {
                     Boolean(activeTabItems?.items.length) 
-                    ? activeTabItems?.items.map((item , i) => <ContactItem key={i} {...item} />) 
+                    ? activeTabItems?.items.map((item , i) => <ContactItem 
+                                                                onContactSelect={activeContactCardName => setActiveContactCard(activeContactCardName)} 
+                                                                activeContactCard={activeContactCard} 
+                                                                key={i} 
+                                                                {...item}
+                                                            />) 
                     : <EmptyTabContact />
                 }
             </div>

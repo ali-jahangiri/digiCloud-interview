@@ -3,6 +3,7 @@ const BASE_URL = "https://randomuser.me/";
 export interface IResponseSchema {
     phone : string;
     email : string;
+    id : number;
     name : {
         first : string;
         last : string;
@@ -13,9 +14,13 @@ export interface IResponseSchema {
     location : {
         state : string;
         postcode : string;
+        city : string;
         street : {
             name : string;
         }
+    }
+    login : {
+        username : string;
     }
 }
 
