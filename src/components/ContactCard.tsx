@@ -1,12 +1,21 @@
 import React from "react";
+import useCrossoverViewportDetection from "../hooks/useCrossoverViewportDetection";
 import { IResponseSchema } from "../types/apiResponseTypes";
 
 interface Props extends Omit<IResponseSchema ,"id">  {
     onClose : () => void
+    triggerPosition : DOMRectList | undefined;
 }
 
-const ContactCard : React.FC<Props> = ({ name ,  picture , phone , email , location , login , onClose }) => {
+const ContactCard : React.FC<Props> = ({ name ,  picture , phone , email , location , login , triggerPosition , onClose }) => {
+    
+    const STATIC_CARD_WIDTH = 640;
 
+    const leftPosition = useCrossoverViewportDetection({
+        baseElementXPosition : triggerPosition ? triggerPosition[0].x : 0,
+        targetElementWidth : STATIC_CARD_WIDTH
+    })
+    
     const detailsListMapper = [
         {
             name : "e-mail",
@@ -35,7 +44,7 @@ const ContactCard : React.FC<Props> = ({ name ,  picture , phone , email , locat
     ]
 
     return (
-        <div className="contactCard">
+        <div style={{ left : leftPosition }} className="contactCard">
             <div className="contactCard__img">
                 <img src={picture.medium} alt="contact-pic" />
             </div>

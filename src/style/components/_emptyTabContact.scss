@@ -23,4 +23,9 @@
         height: 2rem;
         fill: $textColor;
     }
+
+
+    @include mobile() {
+        margin: auto 0;
+    }
 }

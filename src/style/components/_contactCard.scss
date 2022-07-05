@@ -17,7 +17,9 @@
     padding: 1.5rem 0 1.5rem 2rem;
     border-radius: 8px;
     border: 2px solid $borderColor;
-    
+    z-index: 2;
+
+
     &__img {
         width: 100px;
         height: 100px;
@@ -125,7 +127,7 @@
         width: 100%;
         position: fixed;
         bottom: 0;
-        left: 0;
+        left: 0 !important; // !NOTE use !important to overwrite dynamic inline left position
         padding: 0;
         flex-direction: column;
         min-height: 380px;

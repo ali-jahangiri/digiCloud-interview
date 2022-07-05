@@ -14,7 +14,7 @@ const SortBySwitcher : React.FC<Props> = ({ sortBaseOn , setSortBaseOn }) => {
 
     return (
         <div className="sortBySwitcher">
-            Your contact list are sorted based on their {sortBaseOn} name alphabet. you can
+            Your contact list are sorted based on their <span>{sortBaseOn} name</span> alphabet. you can
             <button onClick={switchHandler}>switch it</button>
         </div>
     )

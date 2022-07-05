@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import ContactCard from "./ContactCard";
 import { IResponseSchema } from "../types/apiResponseTypes";
 
@@ -9,12 +9,15 @@ interface Props extends IResponseSchema {
 
 const ContactItem : React.FC<Props> = ({ name , id , onContactSelect , activeContactCard , ...rest }) => {
 
-    const isCurrentlyActive = activeContactCard === id;
+    const containerRef = useRef<HTMLDivElement>(null)
 
-    const closeContactCardHandler = () => onContactSelect(null)
+    const isCurrentlyActive = activeContactCard === id;
+    const closeContactCardHandler = () => onContactSelect(null);
+
+
     
     return (
-        <div className="contactItem">
+        <div ref={containerRef} className="contactItem">
             <div onClick={() => onContactSelect(id)} className="contactItem__fullName">
                 <p>{name.first}, {name.last}</p>
             </div>
@@ -23,7 +26,12 @@ const ContactItem : React.FC<Props> = ({ name , id , onContactSelect , activeCon
                 className={`contactItem__helperMobileDrawerOverlay ${isCurrentlyActive ? "contactItem__helperMobileDrawerOverlay--show" : ""}`}
             />
             {
-                isCurrentlyActive && <ContactCard onClose={closeContactCardHandler} name={name} {...rest} />
+                isCurrentlyActive && <ContactCard 
+                                        triggerPosition={containerRef.current?.getClientRects()} 
+                                        onClose={closeContactCardHandler} 
+                                        name={name} 
+                                        {...rest}
+                                    />
             }
         </div>
     )
