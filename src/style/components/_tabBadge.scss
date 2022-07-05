@@ -5,11 +5,12 @@
     border-radius: 8px 8px 0 0;
     background-color: $tabBgColor;
     padding: 8px;
-    min-width: 30px;
+    min-width: 25px;
     border: 2px solid $borderColor;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    flex: 1;
 
     p {
         font-size: 1.3rem;
@@ -47,5 +48,10 @@
         }
 
         border-block-color: transparent;
+    }
+
+
+    @include mobile() {
+        padding: 16px;
     }
 }

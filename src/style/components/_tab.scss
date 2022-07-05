@@ -4,6 +4,7 @@
     &__badges {
         width: 100%;
         display: flex;
+        overflow-y: auto;
     }
 
     &__itemContainer {
@@ -17,5 +18,14 @@
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
+
+
+        @include mobile() {
+            align-items: flex-start;
+            justify-content: flex-start;
+            max-height: 200px;
+            overflow-y: scroll;
+            flex-direction: column;
+        }
     }
 }

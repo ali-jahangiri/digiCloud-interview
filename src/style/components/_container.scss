@@ -31,4 +31,17 @@
         color: $textColor;
 
     }
+
+
+    @include tablet() {
+        .container {
+            &__header {
+                flex-direction: column;
+            }
+
+            &__title {
+                margin-bottom: .5rem;
+            }
+        }
+    }
 }
