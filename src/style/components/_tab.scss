@@ -1,10 +1,29 @@
 .tab {
     width: 100%;
-    
+
     &__badges {
         width: 100%;
         display: flex;
         overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            height: 4px;
+
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $tabBgColor;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background: rgb(194, 194, 194);
+            height: 1px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: rgb(165, 165, 165);
+        }
     }
 
     &__itemContainer {
